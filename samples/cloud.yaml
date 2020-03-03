@@ -49,94 +49,33 @@ pillars:
     - name: Cost
       practices:
           - name: Right Sizing
-            description: >-
-                Right sizing is the process of matching resource types and sizes to your workload performance and
-                capacity requirements at the lowest possible cost.  It’s also the process of looking at deployed
-                instances and identifying opportunities to eliminate or downsize without compromising capacity or other
-                requirements, which results in lower costs.  Right sizing is the most effective way to control cloud
-                costs. It involves continually analyzing instance performance and usage needs and patterns—and then
-                turning off idle instances and right sizing instances that are either over-provisioned or poorly
-                matched to the workload. Because your resource needs are always changing, right sizing must become an
-                ongoing process to continually achieve cost optimization. You can make right sizing a smooth process by
-                establishing a right-sizing schedule for each team, enforcing tagging for all instances, and taking
-                full advantage of the powerful tools from providers and third-parties to simplify resource monitoring
-                and analysis.
+            description: Right sizing is the process of...
             goal: >-
-                Reduce costs by lowering resource consumption without compromising reliability, performance, or other
-                requirements
-            tests:
-                - test: Organizational requirements are used to cost model each workload
+                Reduce costs by...
+            test-probes:
+                - test-probe: Organizational requirements are used to...
                   impact: normal
                   stage: build
-                  action:
-                      - name: Cost model each workload
-                      - effort: hours
-                      - roles: [ba, ca]
-                      - description: >-
-                          Using the system design requirements (e.g. performance, reliability, security, capacities,
-                          RTO/RPO, SLA information) cost model each workload.  Consult provider resource specification
-                          and recommended practices to ensure design requirements can be met.  Choose resource types
-                          and sizes needed to might requirements.  Using this information in the provider cost
-                          calculator, determine monthly run rate for each resource to arrive at complete workload cost.
-                - test: Each workload is benchmarked using different predicted load and compared
-                  impact: normal
-                  stage: run
-                  factors: [tools, collaboration]
-                  effort: days
-                  roles: [ce, ba]
-                  notes: effort is per workload
-                - test: Resource size is based on known workload characteristics or robust modeling
-                  impact: normal
-                  stage: build
-                  factors: [insight]
+                  action: Cost model each workload...
                   effort: hours
-                  roles: [ca, ba]
-                  notes: This practice needs its test rethought...
-                - test: Resource estimates include all components of the workload
-                  impacts: 
-                  stage: 
-                  factors: 
-                  effort: 
-                  roles: 
-                  notes: 
-                - test: Metrics are tracked to determine resource type and size
-                  impacts: 
-                  stage: 
-                  factors: 
-                  effort: 
-                  roles: 
-                  notes: 
-                - test: Resizing is based on a feedback loop of metrics, either automated or manual
-                  impacts: 
-                  stage: 
-                  factors: 
-                  effort: 
-                  roles: 
-                  notes: 
+                  roles: [ba, ca]
+                  description: Using the system design...
             results:
                 - name: Excellent
                   range: 80-100
-                  recommendation: >-
-                      Right-sizing is a strength at {{company}}.  Resources are likely to be predictable and
-                      appropriately sized with regard to cost.  Be sure to perform equivalent due diligence
-                      in reliability and performance. Nice job!
+                  recommendation: Right-sizing is a strength...
                 - name: Good
                   range: 60-80
-                  recommendation: >-
-                      Resource costs are likely to be somewhat predictable but further cost reduction
-                      opportunities exist.
+                  recommendation: Resource costs are...
                 - name: Fair
                   range: 40-60
-                  recommendation: >-
-                      Resource costs are not optimized and likely to be somewhat unpredictable.
+                  recommendation: Resource costs are...
                 - name: At-risk
                   range: 0-40
-                  recommendation: >-
-                      Brush up your resume and find a new career
+                  recommendation: Brush up your resume and find a new career
           - name: Purchase Options
             description: >-
-                Perform pricing model analysis to allow an organization to choose different pricing model. Implement
-                regions based on cost. Implement pricing models for all components of this workload
+                Perform pricing model analysis to allow an organization to choose different pricing model. Implement regions based on cost. Implement pricing models for all components of this workload
             samples:
                 -  Life-cycle, usage, and SLA metrics are available for each workload
                 -  Price modeling is performed on each workload
@@ -148,8 +87,7 @@ pillars:
                 -  Each component of a workload has been cost modeled
           - name: Optimize Data Transfer
             description: >-
-                Perform data transfer modeling. Select components to optimize data transfer cost. Implement services to
-                reduce data transfer costs
+                Perform data transfer modeling. Select components to optimize data transfer cost. Implement services to reduce data transfer costs
             samples:
                 -  There is well-defined data transfer metrics for each workload
                 -  Data transfer metrics are from real-world usage or realistic modeling i.e., not a SWAG

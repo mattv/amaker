@@ -1,32 +1,50 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="app">
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+    >
+      <main-nav />
+    </v-navigation-drawer>
+
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
+      <v-toolbar-title class="secondary--text">Application</v-toolbar-title>
+    </v-app-bar>
+
+    <v-content>
+      <router-view />
+    </v-content>
+
+    <v-footer
+      color="primary"
+      app
+    >
+      <span class="secondary--text">&copy; 2019</span>
+    </v-footer>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import MainNav from '@/components/MainNav'
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  components: {
+    MainNav
+  },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+  props: {
+    source: String,
+  },
+
+  data: () => ({
+    drawer: null,
+  }),
 }
-</style>
+</script>
