@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list-item-action>
-      <v-checkbox v-model="state"></v-checkbox>
+      <v-checkbox v-model="active"></v-checkbox>
     </v-list-item-action>
 
     <v-list-item-content>
@@ -13,10 +13,11 @@
 <script>
 export default {
   name: 'TestProbe',
-  props: ['title', 'active'],
+  props: ['id'],
   data () {
     return {
-      state: this.active
+      active: this.$store.getters.probeState(this.id),
+      title: this.$store.state.testProbes[this.id].title
     }
   },
 }

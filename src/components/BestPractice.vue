@@ -1,26 +1,26 @@
 <template>
   <div>
     <v-expansion-panel-header color="accent">
-      <span>{{ bestPractice.title }}</span>
+      <span>{{ title }}</span>
       <v-spacer/>
-      <span>{{ bestPractice.percent }} | CA, BA | days | run</span>
+      <span>{{ percent }} | CA, BA | days | run</span>
     </v-expansion-panel-header>
     <v-expansion-panel-content>
       <v-subheader>Description</v-subheader>
       <v-divider/>
-      <p>Right sizing is the process of...</p>
+      <p>{{ description }}</p>
       <v-subheader>Goal</v-subheader>
       <v-divider/>
-      <p>Reduce costs by lowering resource...</p>
+      <p>{{ goal }}</p>
 
       <v-subheader>Tests</v-subheader>
       <v-divider/>
       <v-list>
         <v-list-item
-          v-for="(testProbe, i) in bestPractice.testProbes"
+          v-for="(id, i) in this.testProbes"
           :key="i"
         >
-          <test-probe v-bind="testProbe" />
+          <span><test-probe v-bind:id="id" /></span>
         </v-list-item>
       </v-list>
     </v-expansion-panel-content>
@@ -35,10 +35,9 @@ export default {
   components: {
     TestProbe,
   },
-  props: ['bestPractice'],
+  props: ['title', 'percent', 'description', 'goal', 'testProbes'],
   data () {
     return {
-      state: this.active
     }
   },
 }
