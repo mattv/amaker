@@ -16,6 +16,14 @@
         <v-list-item-title>Cloud Check-up</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
+    <v-list-item link to="/app">
+      <v-list-item-action>
+        <v-icon>mdi-shield-check</v-icon>
+      </v-list-item-action>
+      <v-list-item-content>
+        <v-list-item-title>App Check-up</v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
   </v-list>
 </template>
 
