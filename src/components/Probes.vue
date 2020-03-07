@@ -6,7 +6,7 @@
       :key="i"
     >
       <v-list-item-action>
-        <v-switch :input-value="probe.active" @change="updateProbe(probe.id, $event)"></v-switch>
+        <v-switch :input-value="probe.passed" @change="updateProbe(probe.id, $event)"></v-switch>
       </v-list-item-action>
 
       <v-list-item-content>

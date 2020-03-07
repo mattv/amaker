@@ -1,5 +1,5 @@
 <template>
-  <div class="cloud">
+  <div class="area">
     <v-expansion-panels>
       <v-expansion-panel
         v-for="(activityId, i) in activityIds"
@@ -15,13 +15,14 @@
 import Activity from '@/components/Activity'
 
 export default {
-  name: 'Cloud',
+  name: 'Area',
+  props: ['id'],
   components: {
     Activity
   },
   computed: {
     activityIds () {
-      return Object.keys(this.$store.state.activities)
+      return this.$store.state.areas[this.id].activityIds
     },
   },
 }

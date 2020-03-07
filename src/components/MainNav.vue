@@ -8,20 +8,12 @@
         <v-list-item-title>Home</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
-    <v-list-item link to="/cloud">
-      <v-list-item-action>
-        <v-icon>mdi-cloud-check</v-icon>
-      </v-list-item-action>
-      <v-list-item-content>
-        <v-list-item-title>Cloud Check-up</v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-    <v-list-item link to="/app">
+    <v-list-item link to="/assess">
       <v-list-item-action>
         <v-icon>mdi-shield-check</v-icon>
       </v-list-item-action>
       <v-list-item-content>
-        <v-list-item-title>App Check-up</v-list-item-title>
+        <v-list-item-title>Cloud Check-up</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
   </v-list>

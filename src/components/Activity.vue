@@ -5,7 +5,7 @@
 
       <span>{{ title }}</span>
       <v-spacer/>
-      <span>{{ percent }} | CA, BA | days | run</span>
+      <span>{{ percent }}% | CA, BA | days | run</span>
 
     </v-expansion-panel-header>
 
@@ -45,7 +45,13 @@ export default {
       return this.$store.state.activities[this.id].title
     },
     percent () {
-      return this.$store.state.activities[this.id].percent
+      let sumPasses = (t, probe) => {
+        if (probe.passed) t++
+        return t++
+      }
+      const count = this.probeIds.length
+      const passes = this.$store.getters.probes(this.probeIds).reduce(sumPasses, 0)
+      return Math.round(passes / count * 100)
     },
     description () {
       return this.$store.state.activities[this.id].description

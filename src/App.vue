@@ -13,7 +13,7 @@
       dark
     >
       <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
-      <v-toolbar-title class="secondary--text">Application</v-toolbar-title>
+      <v-toolbar-title class="secondary--text">Amaker</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
@@ -24,7 +24,7 @@
       color="primary"
       app
     >
-      <span class="secondary--text">&copy; 2019</span>
+      <span class="secondary--text">&copy; 2020</span>
     </v-footer>
   </v-app>
 </template>

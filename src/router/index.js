@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Cloud from '../views/Cloud.vue'
+import Assessment from '../views/Assessment.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,9 +11,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/cloud',
-    name: 'Cloud',
-    component: Cloud
+    path: '/assess',
+    name: 'Assessment',
+    component: Assessment
   }
 ]
 
