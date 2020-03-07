@@ -2,26 +2,27 @@
   <div class="cloud">
     <v-expansion-panels>
       <v-expansion-panel
-        v-for="(bestPractice, i) in bestPractices"
+        v-for="(activityId, i) in activityIds"
         :key="i"
       >
-        <best-practice v-bind="bestPractice" />
+        <activity v-bind:id="activityId" />
       </v-expansion-panel>
     </v-expansion-panels>
   </div>
 </template>
 
 <script>
-import BestPractice from '@/components/BestPractice'
+import Activity from '@/components/Activity'
 
 export default {
+  name: 'Cloud',
   components: {
-    BestPractice
+    Activity
   },
-  data () {
-    return {
-      bestPractices: this.$store.state.bestPractices,
-    }
+  computed: {
+    activityIds () {
+      return Object.keys(this.$store.state.activities)
+    },
   },
 }
 </script>

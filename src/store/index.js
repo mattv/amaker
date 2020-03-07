@@ -1,73 +1,81 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
 import createLogger from 'vuex/dist/logger'
 
 Vue.use(Vuex)
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
 
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
-  plugins: [createLogger()],
+  plugins: [
+    createLogger(),
+    vuexLocal.plugin,
+  ],
   state: {
-    bestPractices: {
-      "1": {
+    activities: {
+      '1': {
         id: 1,
+        type: 'activity',
         title: 'Right Sizing',
-        description: 'Right sizing is the practice of...',
+        description: 'Right sizing is the activity of...',
         percent: '63%',
         goal: 'Get the size right',
-        testProbes: ["1", "2", "3"]
+        probeIds: ['1', '2', '3']
       },
-      "2": {
+      '2': {
         id: 2,
+        type: 'activity',
         title: 'Wrong Sizing',
-        description: 'Wrong sizing is the practice of...',
+        description: 'Wrong sizing is the activity of...',
         percent: '63%',
         goal: 'Get the size wrong',
-        testProbes: ["4", "5", "6" ]
+        probeIds: ['4', '5', '6' ]
       },
-      "3": {
+      '3': {
         id: 3,
+        type: 'activity',
         title: 'Upsizing Sizing',
-        description: 'Upsizing sizing is the practice of...',
+        description: 'Upsizing sizing is the activity of...',
         percent: '63%',
         goal: 'Get the size more up',
-        testProbes: ["7", "8", "9" ]
+        probeIds: ['7', '8', '9' ]
       },
-      "4": {
+      '4': {
         id: 4,
+        type: 'activity',
         title: 'Super Sizing',
-        description: 'Super sizing is the practice of...',
+        description: 'Super sizing is the activity of...',
         percent: '63%',
         goal: 'Get the size superest',
-        testProbes: ["10", "11", "12" ]
+        probeIds: ['10', '11', '12' ]
       },
     },
-    testProbes: {
-      "1": { id: "1", title: '1 This is a test', active: false},
-      "2": { id: "2", title: '2 This is another test', active: true},
-      "3": { id: "3", title: '3 And yet another one', active: false},
-      "4": { id: "4", title: '4 This is a test', active: false },
-      "5": { id: "5", title: '5 This is another test', active: true },
-      "6": { id: "6", title: '6 And yet another one', active: false },
-      "7": { id: "7", title: '7 This is a test', active: false },
-      "8": { id: "8", title: '8 This is another test', active: true },
-      "9": { id: "9", title: '9 And yet another one', active: false },
-      "10": { id: "10", title: '10 This is a test', active: false },
-      "11": { id: "11", title: '11 This is another test', active: true },
-      "12": { id: "12", title: '12 And yet another one', active: false },
+    probes: {
+      '1': { id: '1', type: 'probe', title: '1 This is a probe', active: false},
+      '2': { id: '2', type: 'probe', title: '2 This is another probe', active: true},
+      '3': { id: '3', type: 'probe', title: '3 And yet another one', active: false},
+      '4': { id: '4', type: 'probe', title: '4 This is a probe', active: false },
+      '5': { id: '5', type: 'probe', title: '5 This is another probe', active: true },
+      '6': { id: '6', type: 'probe', title: '6 And yet another one', active: false },
+      '7': { id: '7', type: 'probe', title: '7 This is a probe', active: false },
+      '8': { id: '8', type: 'probe', title: '8 This is another probe', active: true },
+      '9': { id: '9', type: 'probe', title: '9 And yet another one', active: false },
+      '10': { id: '10', type: 'probe', title: '10 This is a probe', active: false },
+      '11': { id: '11', type: 'probe', title: '11 This is another probe', active: true },
+      '12': { id: '12', type: 'probe', title: '12 And yet another one', active: false },
     },
   },
   getters: {
-    testProbes: (state) => (testProbes) => {
-      return testProbes.map(p => state.testProbes[p])
+    probes: (state) => (ids) => {
+      return ids.map(id => state.probes[id])
     },
-    probeState: (state) => (probe) => {
-      return state.testProbes[probe].active
-    }
   },
   mutations: {
     updateProbe (state, payload) {
-      state.testProbes[payload.id].active = payload.value
+      state.probes[payload.id].active = payload.value
     },
   },
   actions: {

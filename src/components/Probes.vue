@@ -1,7 +1,8 @@
 <template>
   <v-list>
+    <div>
     <v-list-item
-      v-for="(probe, i) in testProbes"
+      v-for="(probe, i) in probes"
       :key="i"
     >
       <v-list-item-action>
@@ -12,16 +13,17 @@
         <v-list-item-title>{{ probe.title }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
+  </div>
   </v-list>
 </template>
 
 <script>
 export default {
-  name: 'TestProbe',
-  props: ['probes'],
+  name: 'Probe',
+  props: ['ids'],
   computed: {
-    testProbes: function () {
-      return this.$store.getters.testProbes(this.probes)
+    probes () {
+      return this.$store.getters.probes(this.ids)
     },
   },
   methods: {
