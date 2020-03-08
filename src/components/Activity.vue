@@ -45,13 +45,7 @@ export default {
       return this.$store.state.activities[this.id].title
     },
     percent () {
-      let sumPasses = (t, probe) => {
-        if (probe.passed) t++
-        return t++
-      }
-      const count = this.probeIds.length
-      const passes = this.$store.getters.probes(this.probeIds).reduce(sumPasses, 0)
-      return Math.round(passes / count * 100)
+      return this.$store.getters.activityScore(this.id)
     },
     description () {
       return this.$store.state.activities[this.id].description

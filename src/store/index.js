@@ -14,18 +14,18 @@ export default new Vuex.Store({
     createLogger(),
     vuexLocal.plugin,
   ],
-  assessments: {
-    active: '1',
-    '1': {
-      id: '1',
-      type: 'assessment',
-      name: 'Cloud Platform Check-up',
-      description: 'The cloud check-up discovers...',
-      goal: 'Businesses need a healthy cloud platform so they can...',
-      areaIds: ['1', '2', '3']
-    },
-  },
   state: {
+    assessments: {
+      active: '1',
+      '1': {
+        id: '1',
+        type: 'assessment',
+        name: 'Cloud Platform Check-up',
+        description: 'The cloud check-up discovers...',
+        goal: 'Businesses need a healthy cloud platform so they can...',
+        areaIds: ['1', '2', '3']
+      },
+    },
     areas: {
       '1': {
         id: 1,
@@ -33,7 +33,7 @@ export default new Vuex.Store({
         name: 'Cost',
         description: 'This should describe the cost area...',
         goal: 'This should explain why you would focus in the cost area',
-        activityIds: ['1', '2', '3', '4']
+        activityIds: ['1', '3', '4']
       },
       '2': {
         id: 2,
@@ -41,7 +41,7 @@ export default new Vuex.Store({
         name: 'Operations',
         description: 'This should describe the operations area...',
         goal: 'This should explain why you would focus in the operations area',
-        activityIds: ['1', '2', '3', '4']
+        activityIds: ['2', '3', '4']
       },
       '3': {
         id: 3,
@@ -87,21 +87,54 @@ export default new Vuex.Store({
       },
     },
     probes: {
-      '1': { id: '1', type: 'probe', title: '1 This is a probe', passed: false},
-      '2': { id: '2', type: 'probe', title: '2 This is another probe', passed: true},
-      '3': { id: '3', type: 'probe', title: '3 And yet another one', passed: false},
-      '4': { id: '4', type: 'probe', title: '4 This is a probe', passed: false },
-      '5': { id: '5', type: 'probe', title: '5 This is another probe', passed: true },
-      '6': { id: '6', type: 'probe', title: '6 And yet another one', passed: false },
-      '7': { id: '7', type: 'probe', title: '7 This is a probe', passed: false },
-      '8': { id: '8', type: 'probe', title: '8 This is another probe', passed: true },
-      '9': { id: '9', type: 'probe', title: '9 And yet another one', passed: false },
-      '10': { id: '10', type: 'probe', title: '10 This is a probe', passed: false },
-      '11': { id: '11', type: 'probe', title: '11 This is another probe', passed: true },
-      '12': { id: '12', type: 'probe', title: '12 And yet another one', passed: false },
+      '1': { id: '1', type: 'probe', effort: [4, 8], title: '1 This is a probe', passed: false},
+      '2': { id: '2', type: 'probe', effort: [8, 16], title: '2 This is another probe', passed: true},
+      '3': { id: '3', type: 'probe', effort: [4, 8], title: '3 And yet another one', passed: false},
+      '4': { id: '4', type: 'probe', effort: [24, 48], title: '4 This is a probe', passed: false },
+      '5': { id: '5', type: 'probe', effort: [32, 64], title: '5 This is another probe', passed: true },
+      '6': { id: '6', type: 'probe', effort: [16, 32], title: '6 And yet another one', passed: false },
+      '7': { id: '7', type: 'probe', effort: [4, 8], title: '7 This is a probe', passed: false },
+      '8': { id: '8', type: 'probe', effort: [8, 16], title: '8 This is another probe', passed: true },
+      '9': { id: '9', type: 'probe', effort: [4, 8], title: '9 And yet another one', passed: false },
+      '10': { id: '10', type: 'probe', effort: [4, 8], title: '10 This is a probe', passed: false },
+      '11': { id: '11', type: 'probe', effort: [48, 96], title: '11 This is another probe', passed: true },
+      '12': { id: '12', type: 'probe', effort: [64, 128], title: '12 And yet another one', passed: false },
     },
   },
   getters: {
+    activities: (state) => (ids) => {
+      return ids.map(id => state.activities[id])
+    },
+    activityEffort: (state, getters) => (activityId) => {
+      const probeIds = state.activities[activityId].probeIds
+      const efforts = getters.probes(probeIds).filter(p => p.passed).map(p => p.effort)
+      return efforts.reduce((a, b) => {
+        return [a[0] + b[0], a[1] + b[1]]
+      }, [0, 0])
+    },
+    activityScore: (state, getters) => (activityId) => {
+      let sumPasses = (t, probe) => {
+        if (probe.passed) t++
+        return t++
+      }
+      const probeIds = state.activities[activityId].probeIds
+      const count = probeIds.length
+      const passes = getters.probes(probeIds).reduce(sumPasses, 0)
+      return Math.round(passes / count * 100)
+    },
+    areaEffort: (state, getters) => (areaId) => {
+      const activityIds = state.areas[areaId].activityIds
+      const efforts = activityIds.map(a => getters.activityEffort(a))
+      return efforts.reduce((a, b) => {
+        return [a[0] + b[0], a[1] + b[1]]
+      })
+    },
+    areaScore: (state, getters) => (areaId) => {
+      let activityIds = state.areas[areaId].activityIds
+      let activityScores = activityIds.map(id => getters.activityScore(id))
+      let score = activityScores.reduce((a,b) => a +b, 0) / activityScores.length
+      return Math.round(score)
+    },
     probes: (state) => (ids) => {
       return ids.map(id => state.probes[id])
     },

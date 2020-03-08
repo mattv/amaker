@@ -2,8 +2,7 @@
   <v-data-table
     :headers="headers"
     :items="items"
-    :items-per-page="5"
-    class="elevation-1"
+    hide-default-footer
   />
 </template>
 
@@ -13,54 +12,26 @@ export default {
   computed: {
     headers () {
       return [
-        {
-          text: 'Area',
-          align: 'start',
-          value: 'area',
-          sortable: true
-        },
-        {
-          text: 'Score',
-          align: 'start',
-          value: 'percent',
-          sortable: true
-        },
-        {
-          text: 'Effort',
-          align: 'start',
-          value: 'effort',
-          sortable: true
-        },
-        {
-          text: 'Roles',
-          align: 'start',
-          value: 'roles',
-          sortable: true
-        },
+        { text: 'Area', align: 'start', value: 'area', sortable: true },
+        { text: 'Score', align: 'start', value: 'percent', sortable: true },
+        { text: 'Effort', align: 'start', value: 'effort', sortable: true },
+        { text: 'Roles', align: 'start', value: 'roles', sortable: true },
       ]
     },
     items () {
-      return [
-        {
-          area: 'Cost',
-          percent: '50%',
-          effort: 'hours',
-          roles: 'CA, BA, DE'
-        },
-        {
-          area: 'Operations',
-          percent: '80%',
-          effort: 'days',
-          roles: 'CA, CE'
-        },
-        {
-          area: 'Security',
-          percent: '40%',
-          effort: 'weeks',
+      let {state, getters} = this.$store
+      let assessment = state.assessments[state.assessments.active]
+      let areas = assessment.areaIds.map(id => state.areas[id])
+
+      return areas.map(area => {
+        return {
+          area: area.name,
+          percent: `${getters.areaScore(area.id)}%`,
+          effort: getters.areaEffort(area.id),
           roles: 'CA, BA'
-        },
-      ]
-    }
+        }
+      })
+    },
   },
 }
 </script>
