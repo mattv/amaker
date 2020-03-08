@@ -14,6 +14,17 @@ export default new Vuex.Store({
     createLogger(),
     vuexLocal.plugin,
   ],
+  assessments: {
+    active: '1',
+    '1': {
+      id: '1',
+      type: 'assessment',
+      name: 'Cloud Platform Check-up',
+      description: 'The cloud check-up discovers...',
+      goal: 'Businesses need a healthy cloud platform so they can...',
+      areaIds: ['1', '2', '3']
+    },
+  },
   state: {
     areas: {
       '1': {

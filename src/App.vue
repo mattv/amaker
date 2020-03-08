@@ -10,6 +10,7 @@
     <v-app-bar
       app
       color="primary"
+      flat
       dark
     >
       <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
