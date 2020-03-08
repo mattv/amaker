@@ -102,46 +102,46 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    activities: (state) => (ids) => {
-      return ids.map(id => state.activities[id])
+    activities: ({activities}) => (ids) => {
+      return ids.map(id => activities[id])
     },
-    activityEffort: (state, getters) => (activityId) => {
-      const probeIds = state.activities[activityId].probeIds
-      const efforts = getters.probes(probeIds).filter(p => p.passed).map(p => p.effort)
+    activityEffort: ({activities}, {probes}) => (activityId) => {
+      const probeIds = activities[activityId].probeIds
+      const efforts = probes(probeIds).filter(p => p.passed).map(p => p.effort)
       return efforts.reduce((a, b) => {
         return [a[0] + b[0], a[1] + b[1]]
       }, [0, 0])
     },
-    activityScore: (state, getters) => (activityId) => {
+    activityScore: ({activities}, {probes}) => (activityId) => {
       let sumPasses = (t, probe) => {
         if (probe.passed) t++
         return t++
       }
-      const probeIds = state.activities[activityId].probeIds
+      const probeIds = activities[activityId].probeIds
       const count = probeIds.length
-      const passes = getters.probes(probeIds).reduce(sumPasses, 0)
+      const passes = probes(probeIds).reduce(sumPasses, 0)
       return Math.round(passes / count * 100)
     },
-    areaEffort: (state, getters) => (areaId) => {
-      const activityIds = state.areas[areaId].activityIds
-      const efforts = activityIds.map(a => getters.activityEffort(a))
+    areaEffort: ({areas}, {activityEffort}) => (areaId) => {
+      const activityIds = areas[areaId].activityIds
+      const efforts = activityIds.map(a => activityEffort(a))
       return efforts.reduce((a, b) => {
         return [a[0] + b[0], a[1] + b[1]]
       })
     },
-    areaScore: (state, getters) => (areaId) => {
-      let activityIds = state.areas[areaId].activityIds
-      let activityScores = activityIds.map(id => getters.activityScore(id))
+    areaScore: ({areas}, {activityScore}) => (areaId) => {
+      let activityIds = areas[areaId].activityIds
+      let activityScores = activityIds.map(id => activityScore(id))
       let score = activityScores.reduce((a,b) => a +b, 0) / activityScores.length
       return Math.round(score)
     },
-    probes: (state) => (ids) => {
-      return ids.map(id => state.probes[id])
+    probes: ({probes}) => (ids) => {
+      return ids.map(id => probes[id])
     },
   },
   mutations: {
-    updateProbe (state, payload) {
-      state.probes[payload.id].passed = payload.value
+    updateProbe ({probes}, payload) {
+      probes[payload.id].passed = payload.value
     },
   },
   actions: {
