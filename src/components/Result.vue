@@ -27,7 +27,7 @@ export default {
         return {
           area: area.name,
           percent: `${getters.areaScore(area.id)}%`,
-          effort: getters.areaEffort(area.id),
+          effort: getters.areaEffort(area.id).join(' - '),
           roles: 'CA, BA'
         }
       })

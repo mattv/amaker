@@ -59,7 +59,8 @@ export default new Vuex.Store({
         title: 'Right Sizing',
         description: 'Right sizing is the activity of...',
         goal: 'Get the size right',
-        probeIds: ['1', '2', '3']
+        roles: ['ca', 'ba'],
+        probeIds: ['1', '2']
       },
       '2': {
         id: 2,
@@ -67,7 +68,8 @@ export default new Vuex.Store({
         title: 'Wrong Sizing',
         description: 'Wrong sizing is the activity of...',
         goal: 'Get the size wrong',
-        probeIds: ['4', '5', '6' ]
+        roles: ['ba', 'ce', 'dv'],
+        probeIds: ['3', '4', '5', '6' ]
       },
       '3': {
         id: 3,
@@ -75,6 +77,7 @@ export default new Vuex.Store({
         title: 'Upsizing Sizing',
         description: 'Upsizing sizing is the activity of...',
         goal: 'Get the size more up',
+        roles: ['ce', 'se', 'ex'],
         probeIds: ['7', '8', '9' ]
       },
       '4': {
@@ -83,6 +86,7 @@ export default new Vuex.Store({
         title: 'Super Sizing',
         description: 'Super sizing is the activity of...',
         goal: 'Get the size superest',
+        roles: ['ca', 'ce'],
         probeIds: ['10', '11', '12' ]
       },
     },
@@ -107,7 +111,7 @@ export default new Vuex.Store({
     },
     activityEffort: ({activities}, {probes}) => (activityId) => {
       const probeIds = activities[activityId].probeIds
-      const efforts = probes(probeIds).filter(p => p.passed).map(p => p.effort)
+      const efforts = probes(probeIds).filter(p => !p.passed).map(p => p.effort)
       return efforts.reduce((a, b) => {
         return [a[0] + b[0], a[1] + b[1]]
       }, [0, 0])
@@ -138,6 +142,7 @@ export default new Vuex.Store({
     probes: ({probes}) => (ids) => {
       return ids.map(id => probes[id])
     },
+
   },
   mutations: {
     updateProbe ({probes}, payload) {

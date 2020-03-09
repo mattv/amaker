@@ -4,8 +4,18 @@
     <v-expansion-panel-header color="accent">
 
       <span>{{ title }}</span>
-      <v-spacer/>
-      <span>{{ percent }}% | CA, BA | days | run</span>
+      <span>
+        <v-progress-circular
+          :value="percent"
+          size="60"
+          width="10"
+          rotate="-90"
+        >
+          {{ percent }}%
+        </v-progress-circular>
+        <v-chip class="ma-2">{{ effort}}</v-chip>
+        {{ roles }}
+      </span>
 
     </v-expansion-panel-header>
 
@@ -52,6 +62,13 @@ export default {
     },
     goal () {
       return this.$store.state.activities[this.id].goal
+    },
+    effort () {
+      const range = this.$store.getters.activityEffort(this.id)
+      return `${range.join(' to ')} hrs`
+    },
+    roles () {
+      return this.$store.state.activities[this.id].roles.join(', ').toUpperCase()
     },
   },
 }
