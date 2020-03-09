@@ -1,0 +1,14 @@
+{
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "amaker-master-20200309132431-authRole",
+            "UnauthRoleArn": "arn:aws:iam::542574812540:role/amaker-master-20200309132431-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::542574812540:role/amaker-master-20200309132431-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amaker-master-20200309132431-deployment",
+            "UnauthRoleName": "amaker-master-20200309132431-unauthRole",
+            "StackName": "amaker-master-20200309132431",
+            "StackId": "arn:aws:cloudformation:us-east-2:542574812540:stack/amaker-master-20200309132431/d6985f40-622a-11ea-9af8-0a9d1f6a4556"
+        }
+    }
+}
