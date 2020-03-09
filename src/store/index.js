@@ -59,7 +59,6 @@ export default new Vuex.Store({
         title: 'Right Sizing',
         description: 'Right sizing is the activity of...',
         goal: 'Get the size right',
-        roles: ['ca', 'ba'],
         probeIds: ['1', '2']
       },
       '2': {
@@ -68,7 +67,6 @@ export default new Vuex.Store({
         title: 'Wrong Sizing',
         description: 'Wrong sizing is the activity of...',
         goal: 'Get the size wrong',
-        roles: ['ba', 'ce', 'dv'],
         probeIds: ['3', '4', '5', '6' ]
       },
       '3': {
@@ -77,7 +75,6 @@ export default new Vuex.Store({
         title: 'Upsizing Sizing',
         description: 'Upsizing sizing is the activity of...',
         goal: 'Get the size more up',
-        roles: ['ce', 'se', 'ex'],
         probeIds: ['7', '8', '9' ]
       },
       '4': {
@@ -86,22 +83,21 @@ export default new Vuex.Store({
         title: 'Super Sizing',
         description: 'Super sizing is the activity of...',
         goal: 'Get the size superest',
-        roles: ['ca', 'ce'],
         probeIds: ['10', '11', '12' ]
       },
     },
     probes: {
-      '1': { id: '1', type: 'probe', effort: [4, 8], title: '1 This is a probe', passed: false},
-      '2': { id: '2', type: 'probe', effort: [8, 16], title: '2 This is another probe', passed: true},
-      '3': { id: '3', type: 'probe', effort: [4, 8], title: '3 And yet another one', passed: false},
-      '4': { id: '4', type: 'probe', effort: [24, 48], title: '4 This is a probe', passed: false },
-      '5': { id: '5', type: 'probe', effort: [32, 64], title: '5 This is another probe', passed: true },
+      '1': { id: '1', type: 'probe', roles: ['ca', 'ba'], effort: [4, 8], title: '1 This is a probe', passed: false},
+      '2': { id: '2', type: 'probe', roles: ['ba', 'ce', 'dv'], effort: [8, 16], title: '2 This is another probe', passed: false},
+      '3': { id: '3', type: 'probe', roles: ['ce', 'se', 'ex'], effort: [4, 8], title: '3 And yet another one', passed: false},
+      '4': { id: '4', type: 'probe', roles: ['ca', 'ce'], effort: [24, 48], title: '4 This is a probe', passed: false },
+      '5': { id: '5', type: 'probe', effort: [32, 64], title: '5 This is another probe', passed: false },
       '6': { id: '6', type: 'probe', effort: [16, 32], title: '6 And yet another one', passed: false },
       '7': { id: '7', type: 'probe', effort: [4, 8], title: '7 This is a probe', passed: false },
-      '8': { id: '8', type: 'probe', effort: [8, 16], title: '8 This is another probe', passed: true },
+      '8': { id: '8', type: 'probe', effort: [8, 16], title: '8 This is another probe', passed: false },
       '9': { id: '9', type: 'probe', effort: [4, 8], title: '9 And yet another one', passed: false },
       '10': { id: '10', type: 'probe', effort: [4, 8], title: '10 This is a probe', passed: false },
-      '11': { id: '11', type: 'probe', effort: [48, 96], title: '11 This is another probe', passed: true },
+      '11': { id: '11', type: 'probe', effort: [48, 96], title: '11 This is another probe', passed: false },
       '12': { id: '12', type: 'probe', effort: [64, 128], title: '12 And yet another one', passed: false },
     },
   },

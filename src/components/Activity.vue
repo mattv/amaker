@@ -68,7 +68,8 @@ export default {
       return `${range.join(' to ')} hrs`
     },
     roles () {
-      return this.$store.state.activities[this.id].roles.join(', ').toUpperCase()
+      //return this.$store.state.activities[this.id].roles.join(', ').toUpperCase()
+      return 'CA, BA'
     },
   },
 }
