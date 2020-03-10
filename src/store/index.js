@@ -138,7 +138,9 @@ export default new Vuex.Store({
     probes: ({probes}) => (ids) => {
       return ids.map(id => probes[id])
     },
-
+    activityRoles: ({activities}) => (activityId) => {
+      return this.probes(activities[activityId].probeIds).roles
+    },
   },
   mutations: {
     updateProbe ({probes}, payload) {
