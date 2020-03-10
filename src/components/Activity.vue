@@ -7,8 +7,8 @@
       <span>
         <v-progress-circular
           :value="percent"
-          size="60"
-          width="10"
+          size="48"
+          width="5"
           rotate="-90"
         >
           {{ percent }}%
@@ -68,8 +68,7 @@ export default {
       return `${range.join(' to ')} hrs`
     },
     roles () {
-      //return this.$store.state.activities[this.id].roles.join(', ').toUpperCase()
-      return 'CA, BA'
+      return this.$store.getters.activityRoles(this.id)
     },
   },
 }

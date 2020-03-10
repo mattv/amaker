@@ -91,14 +91,14 @@ export default new Vuex.Store({
       '2': { id: '2', type: 'probe', roles: ['ba', 'ce', 'dv'], effort: [8, 16], title: '2 This is another probe', passed: false},
       '3': { id: '3', type: 'probe', roles: ['ce', 'se', 'ex'], effort: [4, 8], title: '3 And yet another one', passed: false},
       '4': { id: '4', type: 'probe', roles: ['ca', 'ce'], effort: [24, 48], title: '4 This is a probe', passed: false },
-      '5': { id: '5', type: 'probe', effort: [32, 64], title: '5 This is another probe', passed: false },
-      '6': { id: '6', type: 'probe', effort: [16, 32], title: '6 And yet another one', passed: false },
-      '7': { id: '7', type: 'probe', effort: [4, 8], title: '7 This is a probe', passed: false },
-      '8': { id: '8', type: 'probe', effort: [8, 16], title: '8 This is another probe', passed: false },
-      '9': { id: '9', type: 'probe', effort: [4, 8], title: '9 And yet another one', passed: false },
-      '10': { id: '10', type: 'probe', effort: [4, 8], title: '10 This is a probe', passed: false },
-      '11': { id: '11', type: 'probe', effort: [48, 96], title: '11 This is another probe', passed: false },
-      '12': { id: '12', type: 'probe', effort: [64, 128], title: '12 And yet another one', passed: false },
+      '5': { id: '5', type: 'probe', roles: ['ce'], effort: [32, 64], title: '5 This is another probe', passed: false },
+      '6': { id: '6', type: 'probe', roles: ['ba', 'po'], effort: [16, 32], title: '6 And yet another one', passed: false },
+      '7': { id: '7', type: 'probe', roles: ['ca'], effort: [4, 8], title: '7 This is a probe', passed: false },
+      '8': { id: '8', type: 'probe', roles: ['po', 'ce'], effort: [8, 16], title: '8 This is another probe', passed: false },
+      '9': { id: '9', type: 'probe', roles: ['pm', 'ce'], effort: [4, 8], title: '9 And yet another one', passed: false },
+      '10': { id: '10', type: 'probe', roles: ['se', 'ce'], effort: [4, 8], title: '10 This is a probe', passed: false },
+      '11': { id: '11', type: 'probe', roles: ['ca', 'ce'], effort: [48, 96], title: '11 This is another probe', passed: false },
+      '12': { id: '12', type: 'probe', roles: ['ca', 'ba'], effort: [64, 128], title: '12 And yet another one', passed: false },
     },
   },
   getters: {
@@ -122,6 +122,14 @@ export default new Vuex.Store({
       const passes = probes(probeIds).reduce(sumPasses, 0)
       return Math.round(passes / count * 100)
     },
+    activityRoles: ({activities}, {probes}) => (activityId) => {
+      return Array.from(
+          // load/extract from Set gets unique values
+          new Set(
+              probes(activities[activityId].probeIds).flatMap(p => p.roles)
+          )
+      ).sort().join(', ').toUpperCase()
+    },
     areaEffort: ({areas}, {activityEffort}) => (areaId) => {
       const activityIds = areas[areaId].activityIds
       const efforts = activityIds.map(a => activityEffort(a))
@@ -137,9 +145,6 @@ export default new Vuex.Store({
     },
     probes: ({probes}) => (ids) => {
       return ids.map(id => probes[id])
-    },
-    activityRoles: ({activities}) => (activityId) => {
-      return this.probes(activities[activityId].probeIds).roles
     },
   },
   mutations: {
