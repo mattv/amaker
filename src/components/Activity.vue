@@ -68,7 +68,7 @@ export default {
       return `${range.join(' to ')} hrs`
     },
     roles () {
-      return this.$store.getters.activityRoles(this.id)
+      return this.$store.getters.activityRoles(this.id).join(', ').toUpperCase()
     },
   },
 }

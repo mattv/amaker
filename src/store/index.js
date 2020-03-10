@@ -128,7 +128,7 @@ export default new Vuex.Store({
           new Set(
               probes(activities[activityId].probeIds).filter(p => !p.passed).flatMap(p => p.roles)
           )
-      ).sort().join(', ').toUpperCase()
+      ).sort()
     },
     areaEffort: ({areas}, {activityEffort}) => (areaId) => {
       const activityIds = areas[areaId].activityIds
@@ -136,6 +136,11 @@ export default new Vuex.Store({
       return efforts.reduce((a, b) => {
         return [a[0] + b[0], a[1] + b[1]]
       })
+    },
+    areaRoles: ({areas}, {activityRoles}) => (areaId) => {
+      let activityIds = areas[areaId].activityIds
+      let areaRoles = activityIds.flatMap(id => activityRoles(id))
+      return Array.from(new Set(areaRoles)).sort()
     },
     areaScore: ({areas}, {activityScore}) => (areaId) => {
       let activityIds = areas[areaId].activityIds
