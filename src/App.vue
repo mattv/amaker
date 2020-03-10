@@ -9,12 +9,12 @@
 
     <v-app-bar
       app
-      color="primary"
       flat
+      color="primary"
       dark
     >
-      <v-app-bar-nav-icon color="secondary" @click.stop="drawer = !drawer" />
-      <v-toolbar-title class="secondary--text">Amaker</v-toolbar-title>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title>Amaker</v-toolbar-title>
     </v-app-bar>
 
     <v-content>
@@ -22,10 +22,11 @@
     </v-content>
 
     <v-footer
-      color="primary"
       app
+      color="primary"
+      dark
     >
-      <span class="secondary--text">&copy; 2020</span>
+      <span>&copy; ClusterGarage 2020</span>
     </v-footer>
   </v-app>
 </template>

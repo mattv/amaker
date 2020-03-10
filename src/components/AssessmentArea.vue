@@ -27,9 +27,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.v-subheader {
-  color: #ff7500 !important
-}
-</style>

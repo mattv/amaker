@@ -1,12 +1,11 @@
 <template>
   <div>
     <v-tabs
-      background-color="primary"
-      dark
       v-model="tab"
       align-with-title
+      background-color="primary" 
     >
-      <v-tabs-slider color="secondary"></v-tabs-slider>
+      <v-tabs-slider></v-tabs-slider>
 
       <v-tab v-for="area in areas" :key="area.name">
         {{ area.name }}
