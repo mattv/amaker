@@ -1,14 +1,15 @@
 {
     "master": {
         "awscloudformation": {
-            "AuthRoleName": "amaker-master-20200309132431-authRole",
-            "UnauthRoleArn": "arn:aws:iam::542574812540:role/amaker-master-20200309132431-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::542574812540:role/amaker-master-20200309132431-authRole",
+            "AuthRoleName": "amplify-amaker-master-170822-authRole",
+            "UnauthRoleArn": "arn:aws:iam::542574812540:role/amplify-amaker-master-170822-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::542574812540:role/amplify-amaker-master-170822-authRole",
             "Region": "us-east-2",
-            "DeploymentBucketName": "amaker-master-20200309132431-deployment",
-            "UnauthRoleName": "amaker-master-20200309132431-unauthRole",
-            "StackName": "amaker-master-20200309132431",
-            "StackId": "arn:aws:cloudformation:us-east-2:542574812540:stack/amaker-master-20200309132431/d6985f40-622a-11ea-9af8-0a9d1f6a4556"
+            "DeploymentBucketName": "amplify-amaker-master-170822-deployment",
+            "UnauthRoleName": "amplify-amaker-master-170822-unauthRole",
+            "StackName": "amplify-amaker-master-170822",
+            "StackId": "arn:aws:cloudformation:us-east-2:542574812540:stack/amplify-amaker-master-170822/48530430-6313-11ea-b419-021e2396e2cc",
+            "AmplifyAppId": "d2xhi708wd01a0"
         }
     }
 }
