@@ -72,8 +72,8 @@ export default new Vuex.Store({
       '3': {
         id: 3,
         type: 'activity',
-        title: 'Upsizing Sizing',
-        description: 'Upsizing sizing is the activity of...',
+        title: 'Up Sizing',
+        description: 'Up sizing is the activity of...',
         goal: 'Get the size more up',
         probeIds: ['7', '8', '9' ]
       },
