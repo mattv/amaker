@@ -126,7 +126,7 @@ export default new Vuex.Store({
       return Array.from(
           // load/extract from Set gets unique values
           new Set(
-              probes(activities[activityId].probeIds).flatMap(p => p.roles)
+              probes(activities[activityId].probeIds).filter(p => !p.passed).flatMap(p => p.roles)
           )
       ).sort().join(', ').toUpperCase()
     },
