@@ -15,6 +15,21 @@ export default new Vuex.Store({
     vuexLocal.plugin,
   ],
   state: {
+    assurances: {
+      '1': 'None',
+      '2': 'Process/documentation/policy in-place',
+      '3': 'Tested periodically',
+      '4': 'Audited/Certified',
+      '5': 'Other',
+    },
+    constraints: {
+      '1': 'People',
+      '2': 'Time',
+      '3': 'Technology',
+      '4': 'Training',
+      '5': 'Other',
+      '6': 'Unknown',
+    },
     assessments: {
       active: '1',
       '1': {
@@ -87,7 +102,13 @@ export default new Vuex.Store({
       },
     },
     probes: {
-      '1': { id: '1', type: 'probe', roles: ['ca', 'ba'], effort: [4, 8], title: '1 This is a probe', passed: false},
+      '1': {
+          id: '1',
+          type: 'probe',
+          roles: ['ca', 'ba'],
+          effort: [4, 8],
+          title: '1 This is a probe',
+      },
       '2': { id: '2', type: 'probe', roles: ['ba', 'ce', 'dv'], effort: [8, 16], title: '2 This is another probe', passed: false},
       '3': { id: '3', type: 'probe', roles: ['ce', 'se', 'ex'], effort: [4, 8], title: '3 And yet another one', passed: false},
       '4': { id: '4', type: 'probe', roles: ['ca', 'ce'], effort: [24, 48], title: '4 This is a probe', passed: false },
@@ -99,6 +120,18 @@ export default new Vuex.Store({
       '10': { id: '10', type: 'probe', roles: ['se', 'ce'], effort: [4, 8], title: '10 This is a probe', passed: false },
       '11': { id: '11', type: 'probe', roles: ['ca', 'ce'], effort: [48, 96], title: '11 This is another probe', passed: false },
       '12': { id: '12', type: 'probe', roles: ['ca', 'ba'], effort: [64, 128], title: '12 And yet another one', passed: false },
+    },
+    responses: {
+      '1': {
+        id: {probeId: 1, customerId: 0, checkPoint: 1519211809934},
+        passed: false,
+        constraints: [1, 3,4],
+      },
+      '2': {
+        id: {probeId: 2, customerId: 0, checkPoint: 1519211809934},
+        passed: true,
+        assurances: [2, 3],
+      },
     },
   },
   getters: {

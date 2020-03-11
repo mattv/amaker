@@ -21,6 +21,7 @@
                 hint="What supports this?"
                 persistent-hint
               />
+              <v-checkbox v-if="!probe.passed" label="Planned" />
               <v-select
                 v-if="!probe.passed"
                 v-model="factorsSelected"
