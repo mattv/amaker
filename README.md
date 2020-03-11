@@ -17,6 +17,13 @@ Clone this repo, then...
 ```
 npm install
 npm run serve
+```
+
+### Environments
+
+AWS infrastructure, environments and CI/CD are handled by Amplify.  Easiest way to start is the [console](https://us-east-2.console.aws.amazon.com/amplify/home?region=us-east-2#/d2xhi708wd01a0).  You'll need an IAM account to access, again ask Mike until things get setup better.
+
+App DNS is via [Google Domains](https://domains.google.com/m/registrar/clustergarage.io).  Only ClusterGarage admins have access to this.
 
 ### Contributing
 
