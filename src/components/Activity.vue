@@ -11,7 +11,7 @@
       <v-divider/>
       <div>Complete: {{ percent }}%</div>
       <div>Roles: {{ roles }}</div>
-      <div>Effort: {{ effort}}</div>
+      <div>Effort: {{ effort }}</div>
 
       <v-subheader class="primary--text">Description</v-subheader>
       <v-divider/>
