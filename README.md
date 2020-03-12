@@ -6,7 +6,7 @@ Amaker is a prototype for an assessment tool.
 
 ## Getting started
 
-This app is build using [AWS](https://aws.amazon.com/) [Amplify](https://aws-amplify.github.io/) and [Vue](https://vuejs.org/) [CLI](https://cli.vuejs.org/).  Follow those links to get setup with those tools.  You'll also want to checkout these items
+This app is built using [AWS](https://aws.amazon.com/) [Amplify](https://aws-amplify.github.io/) and [Vue](https://vuejs.org/) [CLI](https://cli.vuejs.org/).  Follow those links to get setup with those tools.  You'll also want to checkout these items
 
 - [Vuetify]() used for the UI.
 - more coming here soon, stay tuned...
