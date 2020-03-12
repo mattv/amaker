@@ -163,14 +163,12 @@ export default new Vuex.Store({
       return Math.round(passes / count * 100)
     },
     activityRoles: ({activities}, {probes}) => (activityId) => {
-      console.log(activityId)
       const activityRoles = Array.from(
         // load/extract from Set gets unique values
         new Set(
           probes(activities[activityId].probeIds).filter(p => p.passed === 'no').flatMap(p => p.roles)
         )
       ).sort()
-      console.dir(activityRoles)
       return activityRoles
     },
     areaEffort: ({areas}, {activityEffort}) => (areaId) => {
@@ -183,7 +181,6 @@ export default new Vuex.Store({
     areaRoles: ({areas}, {activityRoles}) => (areaId) => {
       let activityIds = areas[areaId].activityIds
       let areaRoles = activityIds.flatMap(id => activityRoles(id))
-      console.log("AR" + areaRoles)
       return Array.from(new Set(areaRoles)).sort()
     },
     areaScore: ({areas}, {activityScore}) => (areaId) => {
