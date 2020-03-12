@@ -103,35 +103,27 @@ export default new Vuex.Store({
     },
     probes: {
       '1': {
-          id: '1',
-          type: 'probe',
-          roles: ['ca', 'ba'],
-          effort: [4, 8],
-          title: '1 This is a probe',
+        id: '1',
+        type: 'probe',
+        roles: ['ca', 'ba'],
+        effort: [4, 8],
+        title: '1 This is a probe',
+        passed: null,
+        planned: false,
+        constraints: [],
+        assurances: []
       },
-      '2': { id: '2', type: 'probe', roles: ['ba', 'ce', 'dv'], effort: [8, 16], title: '2 This is another probe', passed: false},
-      '3': { id: '3', type: 'probe', roles: ['ce', 'se', 'ex'], effort: [4, 8], title: '3 And yet another one', passed: false},
-      '4': { id: '4', type: 'probe', roles: ['ca', 'ce'], effort: [24, 48], title: '4 This is a probe', passed: false },
-      '5': { id: '5', type: 'probe', roles: ['ce'], effort: [32, 64], title: '5 This is another probe', passed: false },
-      '6': { id: '6', type: 'probe', roles: ['ba', 'po'], effort: [16, 32], title: '6 And yet another one', passed: false },
-      '7': { id: '7', type: 'probe', roles: ['ca'], effort: [4, 8], title: '7 This is a probe', passed: false },
-      '8': { id: '8', type: 'probe', roles: ['po', 'ce'], effort: [8, 16], title: '8 This is another probe', passed: false },
-      '9': { id: '9', type: 'probe', roles: ['pm', 'ce'], effort: [4, 8], title: '9 And yet another one', passed: false },
-      '10': { id: '10', type: 'probe', roles: ['se', 'ce'], effort: [4, 8], title: '10 This is a probe', passed: false },
-      '11': { id: '11', type: 'probe', roles: ['ca', 'ce'], effort: [48, 96], title: '11 This is another probe', passed: false },
-      '12': { id: '12', type: 'probe', roles: ['ca', 'ba'], effort: [64, 128], title: '12 And yet another one', passed: false },
-    },
-    responses: {
-      '1': {
-        id: {probeId: 1, customerId: 0, checkPoint: 1519211809934},
-        passed: false,
-        constraints: [1, 3,4],
-      },
-      '2': {
-        id: {probeId: 2, customerId: 0, checkPoint: 1519211809934},
-        passed: true,
-        assurances: [2, 3],
-      },
+      '2': { id: '2', type: 'probe', roles: ['ba', 'ce', 'dv'], effort: [8, 16], title: '2 This is another probe', passed: null},
+      '3': { id: '3', type: 'probe', roles: ['ce', 'se', 'ex'], effort: [4, 8], title: '3 And yet another one', passed: null},
+      '4': { id: '4', type: 'probe', roles: ['ca', 'ce'], effort: [24, 48], title: '4 This is a probe', passed: null},
+      '5': { id: '5', type: 'probe', roles: ['ce'], effort: [32, 64], title: '5 This is another probe', passed: null},
+      '6': { id: '6', type: 'probe', roles: ['ba', 'po'], effort: [16, 32], title: '6 And yet another one', passed: null},
+      '7': { id: '7', type: 'probe', roles: ['ca'], effort: [4, 8], title: '7 This is a probe', passed: null},
+      '8': { id: '8', type: 'probe', roles: ['po', 'ce'], effort: [8, 16], title: '8 This is another probe', passed: null},
+      '9': { id: '9', type: 'probe', roles: ['pm', 'ce'], effort: [4, 8], title: '9 And yet another one', passed: null},
+      '10': { id: '10', type: 'probe', roles: ['se', 'ce'], effort: [4, 8], title: '10 This is a probe', passed: null},
+      '11': { id: '11', type: 'probe', roles: ['ca', 'ce'], effort: [48, 96], title: '11 This is another probe', passed: null},
+      '12': { id: '12', type: 'probe', roles: ['ca', 'ba'], effort: [64, 128], title: '12 And yet another one', passed: null},
     },
   },
   getters: {
@@ -157,10 +149,10 @@ export default new Vuex.Store({
     },
     activityRoles: ({activities}, {probes}) => (activityId) => {
       return Array.from(
-          // load/extract from Set gets unique values
-          new Set(
-              probes(activities[activityId].probeIds).filter(p => !p.passed).flatMap(p => p.roles)
-          )
+        // load/extract from Set gets unique values
+        new Set(
+          probes(activities[activityId].probeIds).filter(p => !p.passed).flatMap(p => p.roles)
+        )
       ).sort()
     },
     areaEffort: ({areas}, {activityEffort}) => (areaId) => {
@@ -186,8 +178,18 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    updateProbe ({probes}, payload) {
-      probes[payload.id].passed = payload.value
+    updatePassed ({probes}, payload) {
+      console.dir(payload)
+      probes[payload.probeId].passed = payload.value
+    },
+    updatePlanned ({probes}, payload) {
+      probes[payload.probeId].planned = payload.value
+    },
+    updateConstraints ({probes}, payload) {
+      probes[payload.probeId].constraints = payload.value
+    },
+    updateAssurances ({probes}, payload) {
+      probes[payload.probeId].assurances = payload.value
     },
   },
   actions: {
