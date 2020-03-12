@@ -194,7 +194,6 @@ export default new Vuex.Store({
   },
   mutations: {
     updatePassed ({probes}, payload) {
-      console.dir(payload)
       probes[payload.probeId].passed = payload.value
     },
     updatePlanned ({probes}, payload) {
