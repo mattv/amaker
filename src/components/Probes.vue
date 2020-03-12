@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list>
+    <v-list three-line>
       <div>
         <v-list-item
           v-for="(probe, i) in probes"
@@ -18,6 +18,7 @@
 
           <v-list-item-content>
             <v-list-item-title>{{ probe.title }}</v-list-item-title>
+            <v-list-item-subtitle class="wrap-text">{{ probe.description }}</v-list-item-subtitle>
             <v-list-item-subtitle>
               <v-select
                 v-if="probe.passed === 'yes'"
@@ -47,18 +48,18 @@
                 hint="What is preventing this?"
                 persistent-hint
               />
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+      </div>
+    </v-list>
+    <v-divider />
+    <div class="text-center">
+      <span>Did you find this useful?
+        <v-rating v-model="rating"></v-rating>
+      </span>
     </div>
-  </v-list>
-  <v-divider />
-  <div class="text-center">
-    <span>Did you find this useful?
-      <v-rating v-model="rating"></v-rating>
-    </span>
   </div>
-</div>
 </template>
 
 <script>
@@ -94,3 +95,9 @@ export default {
 }
 </script>
 
+<style scoped>
+.v-list-item__subtitle {
+  white-space: normal;
+  -webkit-line-clamp: unset !important;
+}
+</style>

@@ -48,7 +48,7 @@ export default new Vuex.Store({
         name: 'Cost',
         description: 'This should describe the cost area...',
         goal: 'This should explain why you would focus in the cost area',
-        activityIds: ['1', '3', '4']
+        activityIds: ['1', '2', '3']
       },
       '2': {
         id: 2,
@@ -56,7 +56,7 @@ export default new Vuex.Store({
         name: 'Operations',
         description: 'This should describe the operations area...',
         goal: 'This should explain why you would focus in the operations area',
-        activityIds: ['2', '3', '4']
+        activityIds: ['4']
       },
       '3': {
         id: 3,
@@ -64,7 +64,7 @@ export default new Vuex.Store({
         name: 'Security',
         description: 'This should describe the security area...',
         goal: 'This should explain why you would focus in the security area',
-        activityIds: ['1', '2', '3', '4']
+        activityIds: ['4']
       },
     },
     activities: {
@@ -72,9 +72,9 @@ export default new Vuex.Store({
         id: 1,
         type: 'activity',
         title: 'Right Sizing',
-        description: 'Right sizing is the activity of...',
-        goal: 'Get the size right',
-        probeIds: ['1', '2']
+        description: 'Right sizing is using the lowest cost resource that still meets the technical specifications of a specific workload. You can right size iteratively by adjusting the size of resources to optimize for costs. Right-sizing activities take into account all of the resources of a system and all of the attributes of each individual resource. Right sizing can be an iterative process, triggered by changes in usage patterns and external factors such as price drops or new resource types.',
+        goal: 'Control cost by using the lowest cost resource that still meets the technical specifications of a specific workload.',
+        probeIds: ['1', '2', '3']
       },
       '2': {
         id: 2,
@@ -82,7 +82,7 @@ export default new Vuex.Store({
         title: 'Wrong Sizing',
         description: 'Wrong sizing is the activity of...',
         goal: 'Get the size wrong',
-        probeIds: ['3', '4', '5', '6' ]
+        probeIds: ['4', '5', '6' ]
       },
       '3': {
         id: 3,
@@ -106,15 +106,30 @@ export default new Vuex.Store({
         id: '1',
         type: 'probe',
         roles: ['ca', 'ba'],
-        effort: [4, 8],
-        title: '1 This is a probe',
+        effort: [48, 64],
+        title: 'Perform cost modeling',
+        description: 'Identify organization requirements and perform cost modeling of the workload and each of its components. Perform benchmark activities for the workload under different predicted loads and compare the costs. The modeling effort should reflect potential benefit; for example, time spent is proportional to component cost.',
         passed: null,
         planned: false,
         constraints: [],
         assurances: []
       },
-      '2': { id: '2', type: 'probe', roles: ['ba', 'ce', 'dv'], effort: [8, 16], title: '2 This is another probe', passed: null},
-      '3': { id: '3', type: 'probe', roles: ['ce', 'se', 'ex'], effort: [4, 8], title: '3 And yet another one', passed: null},
+      '2': {
+        id: '2',
+        type: 'probe',
+        roles: ['ba', 'ce'],
+        effort: [32, 48],
+        title: 'Select resource type and size based on estimates',
+        description: 'Estimate resource size or type based on workload and resource characteristics; for example, compute, memory, throughput, or write intensive. This estimate is typically made using a previous version of the workload (such as an on-premises version), using documentation, or using other sources of information about the workload.',
+        passed: null},
+      '3': {
+        id: '3',
+        type: 'probe',
+        roles: ['ce', 'se'],
+        effort: [64, 96],
+        title: 'Select resource type and size based on metrics',
+        description: 'Use metrics from the currently running workload to select the right size and type to optimize for cost. Appropriately provision throughput, sizing, and storage for services such as compute instances, object storage, block storage(PIOPS), RDBMS, clusters, and networking. This can be done with automatic scaling, or by a manual process of re-sizing.',
+        passed: null},
       '4': { id: '4', type: 'probe', roles: ['ca', 'ce'], effort: [24, 48], title: '4 This is a probe', passed: null},
       '5': { id: '5', type: 'probe', roles: ['ce'], effort: [32, 64], title: '5 This is another probe', passed: null},
       '6': { id: '6', type: 'probe', roles: ['ba', 'po'], effort: [16, 32], title: '6 And yet another one', passed: null},
