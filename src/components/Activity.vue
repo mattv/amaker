@@ -9,7 +9,7 @@
 
       <v-subheader class="primary--text">Summary</v-subheader>
       <v-divider/>
-      <div>Complete: {{ percent }}%</div>
+      <div>Complete: {{ percent }}</div>
       <div>Roles: {{ roles }}</div>
       <div>Effort: {{ effort }}</div>
 
@@ -47,7 +47,10 @@ export default {
       return this.$store.state.activities[this.id].title
     },
     percent () {
-      return this.$store.getters.activityScore(this.id)
+      const percent = this.$store.getters.activityScore(this.id)
+      return percent > 0
+        ? `${percent}%`
+        : 'Gotta start before you can finish :)'
     },
     description () {
       return this.$store.state.activities[this.id].description
@@ -57,10 +60,16 @@ export default {
     },
     effort () {
       const range = this.$store.getters.activityEffort(this.id)
-      return `${range.join(' to ')} hrs`
+
+      return range.reduce((a,b) => a+b,0) > 0
+        ? `${range.join(' to ')} hrs`
+      : 'nothing to see here, move along'
     },
     roles () {
-      return this.$store.getters.activityRoles(this.id).join(', ').toUpperCase()
+      const roles = this.$store.getters.activityRoles(this.id)
+      return roles.length > 0 
+        ? roles.join(', ').toUpperCase()
+        : 'none identified'
     },
   },
 }
