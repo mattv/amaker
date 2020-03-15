@@ -50,7 +50,7 @@ export default {
       const percent = this.$store.getters.activityScore(this.id)
       return percent > 0
         ? `${percent}%`
-        : 'Gotta start before you can finish :)'
+        : ''
     },
     description () {
       return this.$store.state.activities[this.id].description
@@ -63,13 +63,13 @@ export default {
 
       return range.reduce((a,b) => a+b,0) > 0
         ? `${range.join(' to ')} hrs`
-      : 'nothing to see here, move along'
+      : ''
     },
     roles () {
       const roles = this.$store.getters.activityRoles(this.id)
       return roles.length > 0 
         ? roles.join(', ').toUpperCase()
-        : 'none identified'
+        : ''
     },
   },
 }
