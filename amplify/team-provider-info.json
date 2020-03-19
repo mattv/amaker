@@ -10,6 +10,13 @@
             "StackName": "amplify-amaker-master-170822",
             "StackId": "arn:aws:cloudformation:us-east-2:542574812540:stack/amplify-amaker-master-170822/48530430-6313-11ea-b419-021e2396e2cc",
             "AmplifyAppId": "d2xhi708wd01a0"
+        },
+        "categories": {
+            "auth": {
+                "amaker1046c85b": {
+                    "hostedUIProviderCreds": "[]"
+                }
+            }
         }
     }
 }

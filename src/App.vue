@@ -36,15 +36,12 @@ import MainNav from '@/components/MainNav'
 
 export default {
   name: 'App',
-
   components: {
-    MainNav
+    MainNav,
   },
-
   props: {
     source: String,
   },
-
   data: () => ({
     drawer: null,
   }),
