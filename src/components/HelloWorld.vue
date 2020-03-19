@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     authCurrentSession () {
-      console.log('Clicked')
       Auth.currentSession()
         .then(data => console.log(data))
         .catch(err => console.log(err))
