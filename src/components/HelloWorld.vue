@@ -17,6 +17,8 @@
     <v-divider />
     <v-subheader>Authentication actions</v-subheader>
     <code>https://aws-amplify.github.io/docs/js/vue#authentication-components</code>
+    <code>https://amaker-clustergarage-master.auth.us-east-2.amazoncognito.com/login?response_type=code&client_id=3op9io6u1aa3jkji2h5g6mmefh&redirect_uri=https://amaker.clustergarage.io/</code>
+    <v-btn @click="googleLogin">Google Login</v-btn>
     <amplify-sign-out />
     <amplify-authenticator></amplify-authenticator>
   </v-container>
@@ -46,6 +48,9 @@ export default {
         bypassCache: false  
       }).then(user => console.log(user))
         .catch(err => console.log(err));
+    },
+    googleLogin () {
+      Auth.federatedSignIn({provider: 'Google'})
     },
   },
 }
